@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from 'react'
-import { Bell, Search } from 'lucide-react'
+import { Bell } from 'lucide-react'
 import { Button } from "@/components/common/button"
-import { Input } from "@/components/common/input"
 import { Badge } from "@/components/common/badge"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { Search } from "@/components/features/search/search";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface Notification {
   id: number
@@ -19,7 +20,7 @@ export function Header() {
     { id: 2, message: "Your report is ready", read: false },
     { id: 3, message: "Meeting in 30 minutes", read: true },
   ])
-
+  const queryClient = new QueryClient();
   const unreadCount = notifications.filter(n => !n.read).length
 
   const markAsRead = (id: number) => {
@@ -32,10 +33,9 @@ export function Header() {
     <header className="border-b">
       <div className="flex h-16 items-center px-4 gap-4">
         <div className="flex-1">
-          <div className="relative">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input placeholder="Search..." className="pl-8 w-[300px]" />
-          </div>
+          <QueryClientProvider client={queryClient}>
+            <Search/>
+          </QueryClientProvider>
         </div>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
