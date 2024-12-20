@@ -57,7 +57,7 @@ export async function deleteCard(id: string): Promise<void> {
   mockCards.splice(index, 1)
 }
 
-interface Note {
+export interface Note {
   id: string
   title: string
   content: string

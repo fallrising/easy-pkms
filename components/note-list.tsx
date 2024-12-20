@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react'
 import { NoteItem } from '@/components/note-item'
 import { Input } from '@/components/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select'
-import { getNotes } from '@/lib/api'
+import { getNotes, Note } from '@/lib/api'
+
+type SortKey = 'updatedAt' | 'createdAt' | 'title';
 
 export function NoteList() {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState<Note[]>([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortBy, setSortBy] = useState('updatedAt')
+  const [sortBy, setSortBy] = useState<SortKey>('updatedAt')
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -41,7 +43,7 @@ export function NoteList() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-grow"
         />
-        <Select value={sortBy} onValueChange={setSortBy}>
+        <Select value={sortBy} onValueChange={(value: SortKey) => setSortBy(value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
