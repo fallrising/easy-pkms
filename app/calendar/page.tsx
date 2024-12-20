@@ -15,7 +15,7 @@ export default function CalendarPage() {
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Calendar</CardTitle>
+              <CardTitle>Timeline Picker</CardTitle>
             </CardHeader>
             <CardContent>
               <Calendar
