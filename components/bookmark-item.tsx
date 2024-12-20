@@ -14,22 +14,26 @@ interface BookmarkItemProps {
     url: string
     createdAt: string
   }
+  onDelete: (id: string) => void
+  onUpdate: (id: string, data: { title: string; url: string }) => void
 }
 
-export function BookmarkItem({ bookmark }: BookmarkItemProps) {
+export function BookmarkItem({ bookmark, onDelete, onUpdate }: BookmarkItemProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedTitle, setEditedTitle] = useState(bookmark.title)
   const [editedUrl, setEditedUrl] = useState(bookmark.url)
 
   const handleUpdate = async () => {
-    await updateBookmark(bookmark.id, { title: editedTitle, url: editedUrl })
+    const updatedData = { title: editedTitle, url: editedUrl }
+    await updateBookmark(bookmark.id, updatedData)
+    onUpdate(bookmark.id, updatedData)
     setIsEditing(false)
   }
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this bookmark?')) {
       await deleteBookmark(bookmark.id)
-      // You might want to update the bookmark list here
+      onDelete(bookmark.id)
     }
   }
 

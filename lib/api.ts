@@ -123,7 +123,7 @@ export async function deleteNote(id: string): Promise<void> {
   mockNotes.splice(index, 1)
 }
 
-interface Bookmark {
+export interface Bookmark {
   id: string
   title: string
   url: string
