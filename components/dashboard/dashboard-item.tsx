@@ -1,12 +1,12 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
-import { Button } from '@/components/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/card'
+import { Button } from '@/components/common/button'
 import { X } from 'lucide-react'
-import { TableComponent } from '@/components/table-component'
-import { ChartComponent } from '@/components/chart-component'
-import { QuoteComponent } from '@/components/quote-component'
-import { ImageComponent } from '@/components/image-component'
+import { TableComponent } from '@/components/common/table-component'
+import { ChartComponent } from '@/components/dashboard/chart-component'
+import { QuoteComponent } from '@/components/common/quote-component'
+import { ImageComponent } from '@/components/common/image-component'
 
 interface DashboardItemProps {
   component: {

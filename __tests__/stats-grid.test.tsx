@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { StatsGrid } from "@/components/stats-grid"
+import { StatsGrid } from "@/components/dashboard/stats-grid"
 
 describe("StatsGrid", () => {
   it("renders all stat cards", () => {

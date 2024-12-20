@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Layout } from '@/components/layout'
-import { BookmarkList } from '@/components/bookmark-list'
-import { BatchCreateBookmarks } from '@/components/batch-create-bookmarks'
-import { Button } from '@/components/button'
+import { Layout } from '@/components/layout/layout'
+import { BookmarkList } from '@/components/features/bookmarks/bookmark-list'
+import { BatchCreateBookmarks } from '@/components/features/bookmarks/batch-create-bookmarks'
+import { Button } from '@/components/common/button'
 import { PlusCircle } from 'lucide-react'
 
 export default function BookmarksPage() {

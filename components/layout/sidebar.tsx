@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { LayoutDashboard, FileText, Calendar, Settings, Plus, Grid, Bookmark, StickyNote } from 'lucide-react'
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Button } from "@/components/button"
+import { Button } from "@/components/common/button"
 
 const routes = [
   {

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/card'
-import { Button } from '@/components/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/common/card'
+import { Button } from '@/components/common/button'
 import { Pencil, Trash2 } from 'lucide-react'
 import { deleteNote } from '@/lib/api'
-import { EditNoteDialog } from '@/components/edit-note-dialog'
+import { EditNoteDialog } from '@/components/features/notes/edit-note-dialog'
 
 interface NoteItemProps {
   note: {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Input } from '@/components/input'
+import { Input } from '@/components/common/input'
 import { Search } from 'lucide-react'
 
 export function SearchBox() {

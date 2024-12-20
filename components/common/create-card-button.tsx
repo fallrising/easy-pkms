@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/button'
+import { Button } from '@/components/common/button'
 import { Plus } from 'lucide-react'
-import { EditCardDialog } from '@/components/edit-card-dialog'
+import { EditCardDialog } from '@/components/common/edit-card-dialog'
 
 export function CreateCardButton() {
   const [isCreating, setIsCreating] = useState(false)

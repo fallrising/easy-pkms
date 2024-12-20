@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/dialog'
-import { Button } from '@/components/button'
-import { Input } from '@/components/input'
-import { Textarea } from '@/components/textarea'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/common/dialog'
+import { Button } from '@/components/common/button'
+import { Input } from '@/components/common/input'
+import { Textarea } from '@/components/common/textarea'
 import { createNote } from '@/lib/api'
 
 interface CreateNoteDialogProps {

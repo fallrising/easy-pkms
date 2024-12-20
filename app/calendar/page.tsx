@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Layout } from '@/components/layout'
-import { Calendar } from '@/components/calendar'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
+import { Layout } from '@/components/layout/layout'
+import { Calendar } from '@/components/common/calendar'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/card'
 
 export default function CalendarPage() {
   const [date, setDate] = useState<Date | undefined>(new Date())

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import { NoteList } from "@/components/note-list"
+import { NoteList } from "@/components/features/notes/note-list"
 import { getNotes } from "@/lib/api"
 
 // Mock the API function

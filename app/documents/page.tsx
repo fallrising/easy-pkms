@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Layout } from '@/components/layout'
-import { Input } from '@/components/input'
-import { Button } from '@/components/button'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/table'
+import { Layout } from '@/components/layout/layout'
+import { Input } from '@/components/common/input'
+import { Button } from '@/components/common/button'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/common/table'
 import { FileText, Trash2 } from 'lucide-react'
 
 interface Document {

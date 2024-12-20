@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import { CardList } from '@/components/card-list'
-import { CreateCardButton } from '@/components/create-card-button'
-import { SearchBox } from '@/components/search-box'
-import { Layout } from '@/components/layout'
+import { CardList } from '@/components/common/card-list'
+import { CreateCardButton } from '@/components/common/create-card-button'
+import { SearchBox } from '@/components/common/search-box'
+import { Layout } from '@/components/layout/layout'
 
 export default function CardsPage() {
   return (

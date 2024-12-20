@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader } from "@/components/card"
-import { Skeleton } from "@/components/skeleton"
-import { Layout } from "@/components/layout"
+import { Card, CardContent, CardHeader } from "@/components/common/card"
+import { Skeleton } from "@/components/common/skeleton"
+import { Layout } from "@/components/layout/layout"
 
 export default function Loading() {
   return (

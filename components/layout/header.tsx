@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { Bell, Search } from 'lucide-react'
-import { Button } from "@/components/button"
-import { Input } from "@/components/input"
-import { Badge } from "@/components/badge"
+import { Button } from "@/components/common/button"
+import { Input } from "@/components/common/input"
+import { Badge } from "@/components/common/badge"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 interface Notification {

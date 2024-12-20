@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select'
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/dialog";
+import { Button } from '@/components/common/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/common/dialog";
 
 interface AddComponentDialogProps {
   onClose: () => void

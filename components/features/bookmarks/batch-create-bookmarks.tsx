@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/dialog'
-import { Button } from '@/components/button'
-import { Textarea } from '@/components/textarea'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/common/dialog'
+import { Button } from '@/components/common/button'
+import { Textarea } from '@/components/common/textarea'
 import { createBookmarks } from '@/lib/api'
 
 interface BatchCreateBookmarksProps {

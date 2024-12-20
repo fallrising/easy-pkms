@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import {deleteCard, getCards, Card} from '@/lib/api'
-import {ContentCard} from "@/components/content-card";
+import {ContentCard} from "@/components/common/content-card";
 
 export function CardList() {
     const [cards, setCards] = useState<Card[]>([])

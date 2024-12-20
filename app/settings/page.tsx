@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Layout } from '@/components/layout'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card'
-import { Label } from '@/components/label'
-import { Input } from '@/components/input'
-import { Switch } from '@/components/switch'
-import { Button } from '@/components/button'
+import { Layout } from '@/components/layout/layout'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/card'
+import { Label } from '@/components/common/label'
+import { Input } from '@/components/common/input'
+import { Switch } from '@/components/common/switch'
+import { Button } from '@/components/common/button'
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState(true)

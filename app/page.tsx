@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/card"
-import { Layout } from "@/components/layout"
-import { QuickActions } from "@/components/quick-actions"
-import { StatsGrid } from "@/components/stats-grid"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/card"
+import { Layout } from "@/components/layout/layout"
+import { QuickActions } from "@/components/dashboard/quick-actions"
+import { StatsGrid } from "@/components/dashboard/stats-grid"
 
 export default function DashboardPage() {
   return (

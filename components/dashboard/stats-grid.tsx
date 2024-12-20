@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/card"
 import { FileText, LinkIcon, FolderOpen, Star } from 'lucide-react'
 
 const stats = [

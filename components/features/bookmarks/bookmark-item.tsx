@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/card'
-import { Button } from '@/components/button'
-import { Input } from '@/components/input'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/common/card'
+import { Button } from '@/components/common/button'
+import { Input } from '@/components/common/input'
 import { Pencil, Trash2, Check, X } from 'lucide-react'
 import { updateBookmark, deleteBookmark } from '@/lib/api'
 

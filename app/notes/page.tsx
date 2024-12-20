@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Layout } from '@/components/layout'
-import { NoteList } from '@/components/note-list'
-import { CreateNoteDialog } from '@/components/create-note-dialog'
-import { Button } from '@/components/button'
+import { Layout } from '@/components/layout/layout'
+import { NoteList } from '@/components/features/notes/note-list'
+import { CreateNoteDialog } from '@/components/features/notes/create-note-dialog'
+import { Button } from '@/components/common/button'
 import { PlusCircle } from 'lucide-react'
 
 export default function NotesPage() {

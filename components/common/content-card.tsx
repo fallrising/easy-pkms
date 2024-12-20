@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/card"
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/common/card"
 import type { Card as CardType } from "@/lib/api"
 import { format } from "date-fns"
 

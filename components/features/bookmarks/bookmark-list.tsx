@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { BookmarkItem } from '@/components/bookmark-item'
-import { Input } from '@/components/input'
+import { BookmarkItem } from '@/components/features/bookmarks/bookmark-item'
+import { Input } from '@/components/common/input'
 import { getBookmarks, Bookmark } from '@/lib/api'
 
 export function BookmarkList() {

@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/table"
+} from "@/components/common/table"
 
 export function TableComponent({ data }: { data: any }) {
   // This is a placeholder. In a real application, you'd process the data prop

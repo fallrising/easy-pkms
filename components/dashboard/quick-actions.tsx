@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from "@/components/button"
+import { Button } from "@/components/common/button"
 import { FilePlus, FolderPlus, LinkIcon, Tags } from 'lucide-react'
 
 const actions = [

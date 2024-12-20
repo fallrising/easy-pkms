@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { NoteItem } from '@/components/note-item'
-import { Input } from '@/components/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select'
+import { NoteItem } from '@/components/features/notes/note-item'
+import { Input } from '@/components/common/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
 import { getNotes, Note } from '@/lib/api'
 
 type SortKey = 'updatedAt' | 'createdAt' | 'title';

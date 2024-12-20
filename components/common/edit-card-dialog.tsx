@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/dialog'
-import { Button } from '@/components/button'
-import { Input } from '@/components/input'
-import { Textarea } from '@/components/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/common/dialog'
+import { Button } from '@/components/common/button'
+import { Input } from '@/components/common/input'
+import { Textarea } from '@/components/common/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
 import { createCard, updateCard } from '@/lib/api'
 
 interface EditCardDialogProps {
