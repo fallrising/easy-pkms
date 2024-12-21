@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import { NoteList } from "@/components/features/notes/note-list"
-import { getNotes } from "@/lib/api"
+import { getNotes } from "@/api/api"
 
 // Mock the API function
-jest.mock("@/lib/api", () => ({
+jest.mock("@/api/api", () => ({
   getNotes: jest.fn(),
 }))
 

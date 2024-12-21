@@ -5,20 +5,22 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/c
 import { Button } from '@/components/common/button'
 import { Input } from '@/components/common/input'
 import { Textarea } from '@/components/common/textarea'
-import { createNote } from '@/lib/api'
+import {Note} from "@/api";
 
 interface CreateNoteDialogProps {
   onClose: () => void
+  onCreate: (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>
 }
 
-export function CreateNoteDialog({ onClose }: CreateNoteDialogProps) {
+export function CreateNoteDialog({ onClose, onCreate }: CreateNoteDialogProps) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
   const handleCreate = async () => {
-    await createNote({ title, content })
+    await onCreate({ title, content })
     onClose()
   }
+
 
   return (
     <Dialog open={true} onOpenChange={onClose}>

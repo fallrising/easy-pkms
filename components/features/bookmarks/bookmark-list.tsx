@@ -1,55 +1,69 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { BookmarkItem } from '@/components/features/bookmarks/bookmark-item'
 import { Input } from '@/components/common/input'
-import { getBookmarks, Bookmark } from '@/lib/api'
+import { useBookmarks } from '@/hooks/useBookmarks'
 
 export function BookmarkList() {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
-  const [searchTerm, setSearchTerm] = useState('')
+    const {
+        bookmarks,
+        isLoading,
+        error,
+        searchTerm,
+        setSearchTerm,
+        updateBookmark,
+        deleteBookmark
+    } = useBookmarks()
 
-  useEffect(() => {
-    const fetchBookmarks = async () => {
-      const fetchedBookmarks = await getBookmarks()
-      setBookmarks(fetchedBookmarks)
-    }
-    fetchBookmarks()
-  }, [])
-
-
-    const handleDelete = (deletedId: string) => {
-        setBookmarks(prevBookmarks => prevBookmarks.filter(bookmark => bookmark.id !== deletedId))
-    }
-
-    const handleUpdate = (id: string, updatedData: { title: string; url: string }) => {
-        setBookmarks(prevBookmarks => prevBookmarks.map(bookmark =>
-            bookmark.id === id ? { ...bookmark, ...updatedData } : bookmark
-        ))
+    const handleDelete = async (id: string) => {
+        try {
+            await deleteBookmark(id)
+        } catch (error) {
+            console.error('Failed to delete bookmark:', error)
+        }
     }
 
-    const filteredBookmarks = bookmarks.filter(bookmark =>
-        bookmark.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        bookmark.url.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    const handleUpdate = async (id: string, updatedData: { title: string; url: string }) => {
+        try {
+            await updateBookmark(id, updatedData)
+        } catch (error) {
+            console.error('Failed to update bookmark:', error)
+        }
+    }
 
-  return (
-    <div className="space-y-4">
-      <Input
-        placeholder="Search bookmarks..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {filteredBookmarks.map(bookmark => (
-          <BookmarkItem key={bookmark.id}
+    if (error) {
+        return (
+            <div className="text-red-600">
+                Error: {error.message}
+            </div>
+        )
+    }
+
+    if (isLoading) {
+        return (
+            <div className="text-center py-4">
+                Loading...
+            </div>
+        )
+    }
+
+    return (
+        <div className="space-y-4">
+            <Input
+                placeholder="Search bookmarks..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {bookmarks.map(bookmark => (
+                    <BookmarkItem
+                        key={bookmark.id}
                         bookmark={bookmark}
                         onDelete={handleDelete}
                         onUpdate={handleUpdate}
-          />
-        ))}
-      </div>
-    </div>
-  )
+                    />
+                ))}
+            </div>
+        </div>
+    )
 }
-

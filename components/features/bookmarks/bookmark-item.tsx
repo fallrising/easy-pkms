@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/common/button'
 import { Input } from '@/components/common/input'
 import { Pencil, Trash2, Check, X } from 'lucide-react'
-import { updateBookmark, deleteBookmark } from '@/lib/api'
+import { useBookmarks } from '@/hooks/useBookmarks'
 
 interface BookmarkItemProps {
   bookmark: {
@@ -22,6 +22,11 @@ export function BookmarkItem({ bookmark, onDelete, onUpdate }: BookmarkItemProps
   const [isEditing, setIsEditing] = useState(false)
   const [editedTitle, setEditedTitle] = useState(bookmark.title)
   const [editedUrl, setEditedUrl] = useState(bookmark.url)
+
+  const {
+    updateBookmark,
+    deleteBookmark
+  } = useBookmarks()
 
   const handleUpdate = async () => {
     const updatedData = { title: editedTitle, url: editedUrl }

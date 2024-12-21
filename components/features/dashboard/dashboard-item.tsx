@@ -3,10 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/card'
 import { Button } from '@/components/common/button'
 import { X } from 'lucide-react'
-import { TableComponent } from '@/components/dashboard/table-component'
-import { ChartComponent } from '@/components/dashboard/chart-component'
-import { QuoteComponent } from '@/components/dashboard/quote-component'
-import { ImageComponent } from '@/components/dashboard/image-component'
+import { TableComponent } from '@/components/features/dashboard/table-component'
+import { ChartComponent } from '@/components/features/dashboard/chart-component'
+import { QuoteComponent } from '@/components/features/dashboard/quote-component'
+import { ImageComponent } from '@/components/features/dashboard/image-component'
 
 interface DashboardItemProps {
   component: {

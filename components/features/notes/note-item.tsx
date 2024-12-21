@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/common/card'
 import { Button } from '@/components/common/button'
 import { Pencil, Trash2 } from 'lucide-react'
-import { deleteNote } from '@/lib/api'
 import { EditNoteDialog } from '@/components/features/notes/edit-note-dialog'
+import {Note} from "@/api";
 
 interface NoteItemProps {
   note: {
@@ -15,15 +15,16 @@ interface NoteItemProps {
     createdAt: string
     updatedAt: string
   }
+  onUpdate: (id: string, data: Partial<Note>) => Promise<void>
+  onDelete: (id: string) => Promise<void>
 }
 
-export function NoteItem({ note }: NoteItemProps) {
+export function NoteItem({ note, onUpdate, onDelete }: NoteItemProps) {
   const [isEditing, setIsEditing] = useState(false)
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this note?')) {
-      await deleteNote(note.id)
-      // You might want to update the note list here
+      await onDelete(note.id)
     }
   }
 
@@ -52,7 +53,11 @@ export function NoteItem({ note }: NoteItemProps) {
         </div>
       </CardFooter>
       {isEditing && (
-        <EditNoteDialog note={note} onClose={() => setIsEditing(false)} />
+          <EditNoteDialog
+              note={note}
+              onClose={() => setIsEditing(false)}
+              onUpdate={onUpdate}
+          />
       )}
     </Card>
   )

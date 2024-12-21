@@ -6,7 +6,7 @@ import { Button } from '@/components/common/button'
 import { Input } from '@/components/common/input'
 import { Textarea } from '@/components/common/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
-import { createCard, updateCard } from '@/lib/api'
+import { createCard, updateCard } from '@/api/api'
 
 interface EditCardDialogProps {
   card: {

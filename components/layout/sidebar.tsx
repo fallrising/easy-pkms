@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/api/utils"
 import { LayoutDashboard, FileText, Calendar, Settings, Plus, Grid, Bookmark, StickyNote } from 'lucide-react'
 import Link from "next/link"
 import { usePathname } from "next/navigation"

@@ -2,9 +2,9 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/card"
 import { Layout } from "@/components/layout/layout"
-import { QuickActions } from "@/components/dashboard/quick-actions"
-import { StatsGrid } from "@/components/dashboard/stats-grid"
-import {ActivityFeed} from "@/components/dashboard/activity-feed";
+import { QuickActions } from "@/components/features/dashboard/quick-actions"
+import { StatsGrid } from "@/components/features/dashboard/stats-grid"
+import {ActivityFeed} from "@/components/features/dashboard/activity-feed";
 
 export default function DashboardPage() {
   return (

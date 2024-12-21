@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/common/dialog'
 import { Button } from '@/components/common/button'
 import { Textarea } from '@/components/common/textarea'
-import { createBookmarks } from '@/lib/api'
+import { useBookmarks } from '@/hooks/useBookmarks'
 
 interface BatchCreateBookmarksProps {
   onClose: () => void
@@ -13,13 +13,17 @@ interface BatchCreateBookmarksProps {
 export function BatchCreateBookmarks({ onClose }: BatchCreateBookmarksProps) {
   const [batchInput, setBatchInput] = useState('')
 
+  const {
+    createBookmark
+  } = useBookmarks()
+
   const handleBatchCreate = async () => {
     const bookmarks = batchInput.split('\n').map(line => {
       const [title, url] = line.split(',').map(item => item.trim())
       return { title, url }
     })
 
-    await createBookmarks(bookmarks)
+    await createBookmark(bookmarks)
     onClose()
   }
 

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { DashboardItem } from '@/components/dashboard/dashboard-item'
+import { DashboardItem } from '@/components/features/dashboard/dashboard-item'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 

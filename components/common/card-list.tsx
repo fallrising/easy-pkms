@@ -1,31 +1,28 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { deleteCard, getCards, Card } from '@/lib/api'
+import { useInfiniteCards } from '@/hooks/useInfiniteCards'
 import { ContentCard } from "@/components/common/content-card"
-import { useSearchParams } from 'next/navigation'
+import {Card} from "@/api";
 
 interface CardListProps {
-    searchQuery?: string | null;
-    filterType?: string | null;
-    filterId?: string | null;
+    searchQuery?: string | null
+    filterType?: string | null
+    filterId?: string | null
 }
 
 export function CardList({ searchQuery, filterType, filterId }: CardListProps) {
-    const [cards, setCards] = useState<Card[]>([])
-    const [page, setPage] = useState(1)
-    const [hasMore, setHasMore] = useState(true)
-    const [isLoading, setIsLoading] = useState(false)
+    const { cards, isLoading, hasMore, loadMore, updateCard, deleteCard, reset } = useInfiniteCards({
+        search: searchQuery,
+        type: filterType,
+        id: filterId
+    })
     const [ref, inView] = useInView()
-    const searchParams = useSearchParams()
 
     // Reset when search params change
     useEffect(() => {
-        setCards([])
-        setPage(1)
-        setHasMore(true)
-        loadMore(true)
+        reset()
     }, [searchQuery, filterType, filterId])
 
     // Load more when scrolling to bottom
@@ -35,37 +32,17 @@ export function CardList({ searchQuery, filterType, filterId }: CardListProps) {
         }
     }, [inView])
 
-    const loadMore = async (reset = false) => {
-        if (isLoading || (!hasMore && !reset)) return
-
-        setIsLoading(true)
+    const handleEdit = async (id: string, card: Partial<Card>) => {
         try {
-            const currentPage = reset ? 1 : page
-            const newCards = await getCards(currentPage, {
-                search: searchQuery,
-                type: filterType,
-                id: filterId
-            })
-
-            setHasMore(newCards.length === 10) // Assuming 10 is the page size
-            setCards(prevCards => reset ? newCards : [...prevCards, ...newCards])
-            setPage(prev => prev + 1)
+            await updateCard(id, card)
         } catch (error) {
-            console.error('Failed to load cards:', error)
-        } finally {
-            setIsLoading(false)
+            console.error('Failed to delete card:', error)
         }
-    }
-
-    const handleEdit = (id: string) => {
-        // Implement edit functionality
-        console.log('Edit card:', id)
     }
 
     const handleDelete = async (id: string) => {
         try {
             await deleteCard(id)
-            setCards(prevCards => prevCards.filter(card => card.id !== id))
         } catch (error) {
             console.error('Failed to delete card:', error)
         }

@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { Layout } from '@/components/layout/layout'
-import { DashboardGrid } from '@/components/dashboard/dashboard-grid'
+import { DashboardGrid } from '@/components/features/dashboard/dashboard-grid'
 import { Button } from '@/components/common/button'
 import { PlusCircle } from 'lucide-react'
-import { AddComponentDialog } from '@/components/dashboard/add-component-dialog'
+import { AddComponentDialog } from '@/components/features/dashboard/add-component-dialog'
 
 export default function CustomDashboardPage() {
   const [isAddingComponent, setIsAddingComponent] = useState(false)
