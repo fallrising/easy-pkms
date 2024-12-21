@@ -43,6 +43,11 @@ const routes = [
     href: "/notes",
   },
   {
+    label: "Editor",
+    icon: StickyNote,
+    href: "/editor",
+  },
+  {
     label: "Settings",
     icon: Settings,
     href: "/settings",
