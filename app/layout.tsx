@@ -6,8 +6,21 @@ import React from "react";
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Personal Information Management System",
-  description: "A comprehensive web-based personal information management system",
+    title: "Asurada",
+    description: "A comprehensive web-based personal information management system",
+    robots: {
+        index: false,
+        follow: true,
+        nocache: true,
+        googleBot: {
+            index: true,
+            follow: false,
+            noimageindex: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
 }
 
 export default function RootLayout({
@@ -18,14 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
+      <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
+      >
           {children}
-        </ThemeProvider>
+      </ThemeProvider>
       </body>
     </html>
   )
