@@ -401,3 +401,87 @@ export async function decrementStat(id: string): Promise<Stat> {
 
   return mockStats[statIndex]
 }
+
+export interface Action {
+  id: string;
+  label: string;
+  iconName: string; // Represent icon names for simplicity
+  createdAt: string;
+  updatedAt: string;
+}
+
+const mockActions: Action[] = [
+  {
+    id: "1",
+    label: "New Document",
+    iconName: "FilePlus",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    updatedAt: "2023-01-01T00:00:00.000Z",
+  },
+  {
+    id: "2",
+    label: "Add Category",
+    iconName: "FolderPlus",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    updatedAt: "2023-01-01T00:00:00.000Z",
+  },
+  {
+    id: "3",
+    label: "Add Link",
+    iconName: "LinkIcon",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    updatedAt: "2023-01-01T00:00:00.000Z",
+  },
+  {
+    id: "4",
+    label: "Manage Tags",
+    iconName: "Tags",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    updatedAt: "2023-01-01T00:00:00.000Z",
+  },
+];
+
+export async function getActions(): Promise<Action[]> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  return mockActions;
+}
+
+export async function createAction(
+    action: Omit<Action, "id" | "createdAt" | "updatedAt">
+): Promise<Action> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const newAction = {
+    ...action,
+    id: Date.now().toString(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  mockActions.unshift(newAction);
+  return newAction;
+}
+
+export async function updateAction(
+    id: string,
+    action: Partial<Action>
+): Promise<Action> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const index = mockActions.findIndex((a) => a.id === id);
+  if (index === -1) throw new Error("Action not found");
+  mockActions[index] = {
+    ...mockActions[index],
+    ...action,
+    updatedAt: new Date().toISOString(),
+  };
+  return mockActions[index];
+}
+
+export async function deleteAction(id: string): Promise<void> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const index = mockActions.findIndex((a) => a.id === id);
+  if (index === -1) throw new Error("Action not found");
+  mockActions.splice(index, 1);
+}

@@ -1,46 +1,37 @@
-'use client'
+'use client';
 
-import { Button } from "@/components/common/button"
-import { FilePlus, FolderPlus, LinkIcon, Tags } from 'lucide-react'
-
-const actions = [
-  {
-    label: "New Document",
-    icon: FilePlus,
-    onClick: () => console.log("New document"),
-  },
-  {
-    label: "Add Category",
-    icon: FolderPlus,
-    onClick: () => console.log("Add category"),
-  },
-  {
-    label: "Add Link",
-    icon: LinkIcon,
-    onClick: () => console.log("Add link"),
-  },
-  {
-    label: "Manage Tags",
-    icon: Tags,
-    onClick: () => console.log("Manage tags"),
-  },
-]
+import { useEffect, useState } from 'react';
+import { Button } from "@/components/common/button";
+import { getActions, Action } from "@/lib/api";
+import {getIconByName} from "@/utils/icon-map"; // Adjust the import path as needed
 
 export function QuickActions() {
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      {actions.map((action) => (
-        <Button
-          key={action.label}
-          variant="outline"
-          className="h-24 flex-col gap-2"
-          onClick={action.onClick}
-        >
-          <action.icon className="h-6 w-6" />
-          {action.label}
-        </Button>
-      ))}
-    </div>
-  )
-}
+  const [actions, setActions] = useState<Action[]>([]);
 
+  useEffect(() => {
+    async function fetchActions() {
+      const data = await getActions();
+      setActions(data);
+    }
+    fetchActions();
+  }, []);
+
+  return (
+      <div className="grid grid-cols-2 gap-4">
+        {actions.map((action) => {
+          const IconComponent = getIconByName(action.iconName)
+          return (
+              <Button
+                  key={action.id}
+                  variant="outline"
+                  className="h-24 flex-col gap-2"
+                  onClick={() => console.log(`${action.label} clicked`)}
+              >
+                {IconComponent && <IconComponent className="h-6 w-6" />}
+                {action.label}
+              </Button>
+          );
+        })}
+      </div>
+  );
+}
