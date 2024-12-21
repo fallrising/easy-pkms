@@ -27,6 +27,21 @@ export function useInfiniteCards(options: GetCardsOptions = {}) {
         }
     }, [page, options, hasMore, isLoading])
 
+    const createCard = useCallback(async (card: Omit<Card, 'id' | 'createdAt' | 'updatedAt'>) => {
+        try {
+            const newCard = await CardService.createCard(card)  // Get the complete card with all fields
+            // random id generation for mock only, set it to new card id
+            newCard.id = Date.now().toString()
+            newCard.createdAt = new Date().toISOString()
+            newCard.updatedAt = new Date().toISOString()
+            // Now we can safely add it to the state since it has all required fields
+            setCards(prevCards => [newCard, ...prevCards])
+        } catch (error) {
+            console.error('Failed to create card:', error)  // Also fixed the error message
+            throw error
+        }
+    }, [])
+
     const deleteCard = useCallback(async (id: string) => {
         try {
             await CardService.deleteCard(id)
@@ -63,6 +78,7 @@ export function useInfiniteCards(options: GetCardsOptions = {}) {
         isLoading,
         hasMore,
         loadMore,
+        createCard,
         updateCard,
         deleteCard,
         reset

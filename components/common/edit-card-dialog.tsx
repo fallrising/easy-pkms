@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/common/dialog'
 import { Button } from '@/components/common/button'
 import { Input } from '@/components/common/input'
 import { Textarea } from '@/components/common/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
-import { createCard, updateCard } from '@/api/api'
+import {Card} from "@/api";
 
+type CreateCardData = Omit<Card, 'id' | 'createdAt' | 'updatedAt'>
 interface EditCardDialogProps {
   card: {
     id: string
@@ -17,9 +18,11 @@ interface EditCardDialogProps {
     status: string
   } | null
   onClose: () => void
+  onUpdate: (id: string, card: Partial<Card>) => Promise<void>
+  onCreate: (card: CreateCardData) => Promise<void>
 }
 
-export function EditCardDialog({ card, onClose }: EditCardDialogProps) {
+export function EditCardDialog({ card, onClose, onUpdate, onCreate }: EditCardDialogProps) {
   const [formData, setFormData] = useState(card || {
     title: '',
     content: '',
@@ -29,12 +32,22 @@ export function EditCardDialog({ card, onClose }: EditCardDialogProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (card) {
-      await updateCard(card.id, formData)
-    } else {
-      await createCard(formData)
+    try {
+      if (card?.id) {
+        await onUpdate(card.id, formData)
+      } else {
+        await onCreate({
+          title: formData.title,
+          content: formData.content,
+          logo: formData.logo,
+          status: formData.status
+        })
+      }
+      onClose()
+    } catch (error) {
+      console.error('Failed to save card:', error)
+      // Handle error (maybe show an error message to user)
     }
-    onClose()
   }
 
   return (
