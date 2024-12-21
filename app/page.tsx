@@ -1,7 +1,10 @@
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/card"
 import { Layout } from "@/components/layout/layout"
 import { QuickActions } from "@/components/dashboard/quick-actions"
 import { StatsGrid } from "@/components/dashboard/stats-grid"
+import {ActivityFeed} from "@/components/dashboard/activity-feed";
 
 export default function DashboardPage() {
   return (
@@ -18,7 +21,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-8">
-                {/* Activity items will go here */}
+                <ActivityFeed />
               </div>
             </CardContent>
           </Card>

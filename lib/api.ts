@@ -234,4 +234,170 @@ export async function deleteBookmark(id: string): Promise<void> {
   mockBookmarks.splice(index, 1)
 }
 
+export interface Activity {
+  id: string
+  type: 'create' | 'update' | 'delete'
+  description: string
+  timestamp: string
+  user: {
+    name: string
+    avatar: string
+  }
+}
 
+export const mockActivities: Activity[] = [
+  {
+    id: '1',
+    type: 'create',
+    description: 'Created a new bookmark for "React Documentation"',
+    timestamp: '2024-03-21T10:30:00.000Z',
+    user: {
+      name: 'John Doe',
+      avatar: '/api/placeholder/32/32'
+    }
+  },
+  {
+    id: '2',
+    type: 'update',
+    description: 'Updated bookmark title for "TypeScript Handbook"',
+    timestamp: '2024-03-21T09:15:00.000Z',
+    user: {
+      name: 'Jane Smith',
+      avatar: '/api/placeholder/32/32'
+    }
+  },
+  {
+    id: '3',
+    type: 'delete',
+    description: 'Removed bookmark "Old Tutorial"',
+    timestamp: '2024-03-20T16:45:00.000Z',
+    user: {
+      name: 'Mike Johnson',
+      avatar: '/api/placeholder/32/32'
+    }
+  }
+]
+
+export async function getActivities(): Promise<Activity[]> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+  return mockActivities
+}
+
+export async function createActivity(activity: Omit<Activity, 'id' | 'timestamp'>): Promise<Activity> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  const newActivity: Activity = {
+    ...activity,
+    id: Date.now().toString(),
+    timestamp: new Date().toISOString()
+  }
+
+  mockActivities.unshift(newActivity) // Add to beginning of array
+  return newActivity
+}
+
+export async function deleteActivity(id: string): Promise<void> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  const index = mockActivities.findIndex(activity => activity.id === id)
+  if (index === -1) throw new Error('Activity not found')
+
+  mockActivities.splice(index, 1)
+}
+
+
+export interface Stat {
+  id: string
+  label: string
+  value: string
+  iconName: string  // Store icon name as string instead of component
+  description: string
+}
+
+export const mockStats: Stat[] = [
+  {
+    id: '1',
+    label: "Total Documents",
+    value: "34",
+    iconName: "file-text",  // Icon names as strings
+    description: "Documents stored",
+  },
+  {
+    id: '2',
+    label: "Quick Links",
+    value: "6",
+    iconName: "link",
+    description: "Saved shortcuts",
+  },
+  {
+    id: '3',
+    label: "Categories",
+    value: "12",
+    iconName: "folder",
+    description: "Organization system",
+  },
+  {
+    id: '4',
+    label: "Favorites",
+    value: "8",
+    iconName: "star",
+    description: "Starred items",
+  },
+]
+
+export async function getStats(): Promise<Stat[]> {
+  await new Promise(resolve => setTimeout(resolve, 500))
+  return mockStats
+}
+
+export async function updateStat(id: string, newValue: string): Promise<Stat> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  const statIndex = mockStats.findIndex(stat => stat.id === id)
+  if (statIndex === -1) throw new Error('Stat not found')
+
+  mockStats[statIndex] = {
+    ...mockStats[statIndex],
+    value: newValue
+  }
+
+  return mockStats[statIndex]
+}
+
+export async function incrementStat(id: string): Promise<Stat> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  const statIndex = mockStats.findIndex(stat => stat.id === id)
+  if (statIndex === -1) throw new Error('Stat not found')
+
+  const currentValue = parseInt(mockStats[statIndex].value)
+  mockStats[statIndex] = {
+    ...mockStats[statIndex],
+    value: (currentValue + 1).toString()
+  }
+
+  return mockStats[statIndex]
+}
+
+export async function decrementStat(id: string): Promise<Stat> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  const statIndex = mockStats.findIndex(stat => stat.id === id)
+  if (statIndex === -1) throw new Error('Stat not found')
+
+  const currentValue = parseInt(mockStats[statIndex].value)
+  if (currentValue <= 0) throw new Error('Cannot decrement below 0')
+
+  mockStats[statIndex] = {
+    ...mockStats[statIndex],
+    value: (currentValue - 1).toString()
+  }
+
+  return mockStats[statIndex]
+}
