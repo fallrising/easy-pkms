@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Responsive, WidthProvider, Layout as GridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -22,29 +22,41 @@ export function DashboardGrid({
                                   onUpdateComponent,
                                   onUpdateLayout
                               }: DashboardGridProps) {
+    const layoutRef = useRef(layout);
+
+    useEffect(() => {
+        layoutRef.current = layout;
+    }, [layout]);
+
     const onLayoutChange = useCallback((currentLayout: GridLayout[]) => {
         const updatedLayout: Layout = {
-            rows: currentLayout.map((item) => ({
-                id: `row-${item.i}`,
-                components: [item.i],
-                x: item.x,
-                y: item.y,
-                w: item.w,
-                h: item.h,
-            }))
+            rows: [{
+                id: 'main',
+                components: currentLayout.map(item => ({
+                    id: item.i,
+                    x: item.x,
+                    y: item.y,
+                    w: item.w,
+                    h: item.h,
+                }))
+            }]
         };
-        onUpdateLayout(updatedLayout);
+
+        if (JSON.stringify(updatedLayout) !== JSON.stringify(layoutRef.current)) {
+            onUpdateLayout(updatedLayout);
+        }
     }, [onUpdateLayout]);
 
-    const getLayoutFromComponents = () => {
-        return layout.rows.map((row) => ({
-            i: row.components[0],
-            x: row.x || 0,
-            y: row.y || 0,
-            w: row.w || 2,
-            h: row.h || 2,
+    const getLayoutFromComponents = useCallback(() => {
+        const flattenedComponents = layout.rows.flatMap(row => row.components);
+        return flattenedComponents.map(component => ({
+            i: component.id,
+            x: component.x,
+            y: component.y,
+            w: component.w,
+            h: component.h,
         }));
-    };
+    }, [layout]);
 
     return (
         <ResponsiveGridLayout
@@ -57,15 +69,21 @@ export function DashboardGrid({
             isDraggable={true}
             isResizable={true}
         >
-            {components.map(component => (
-                <div key={component.id}>
-                    <DashboardItem
-                        component={component}
-                        onRemove={() => onRemoveComponent(component.id)}
-                        onUpdate={(updates) => onUpdateComponent(component.id, updates)}
-                    />
-                </div>
-            ))}
+            {components.map(component => {
+                const componentLayout = layout.rows
+                    .flatMap(row => row.components)
+                    .find(item => item.id === component.id);
+
+                return (
+                    <div key={component.id} data-grid={componentLayout}>
+                        <DashboardItem
+                            component={component}
+                            onRemove={() => onRemoveComponent(component.id)}
+                            onUpdate={(updates) => onUpdateComponent(component.id, updates)}
+                        />
+                    </div>
+                );
+            })}
         </ResponsiveGridLayout>
     );
 }

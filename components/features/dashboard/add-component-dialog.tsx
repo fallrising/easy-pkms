@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/common/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/select'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/common/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/common/dialog"
 import { Component } from '@/api/types/dashboard'
 
 interface AddComponentDialogProps {
@@ -71,6 +71,9 @@ export function AddComponentDialog({ onClose, onAddComponent }: AddComponentDial
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Add New Component</DialogTitle>
+            <DialogDescription>
+              Choose a component type and click 'Add Component' to add it to your dashboard.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <Select onValueChange={(value) => setComponentType(value as Component['name'])}>
