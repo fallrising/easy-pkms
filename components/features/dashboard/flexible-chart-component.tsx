@@ -50,8 +50,8 @@ interface PieSettings extends CommonSettings {
 
 type ChartSettings = CartesianSettings | PieSettings;
 
-interface FlexibleChartProps {
-    settings: ChartSettings;
+interface FlexibleChartProps<T extends ChartSettings> {
+    settings: T;
     data: Array<Record<string, any>>;
     className?: string;
 }
@@ -59,7 +59,11 @@ interface FlexibleChartProps {
 const DEFAULT_COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const DEFAULT_HEIGHT = 350;
 
-export function FlexibleChart({ settings, data, className }: FlexibleChartProps) {
+export function FlexibleChart<T extends ChartSettings>({
+                                                           settings,
+                                                           data,
+                                                           className
+                                                       }: FlexibleChartProps<T>) {
     const chartContent = useMemo(() => {
         switch (settings.type) {
             case 'bar':

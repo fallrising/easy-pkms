@@ -8,22 +8,18 @@ import { Button } from '@/components/common/button';
 import { PlusCircle } from 'lucide-react';
 import { AddComponentDialog } from '@/components/features/dashboard/add-component-dialog';
 import { DashboardService } from '@/api/services/dashboard.service';
-import { Component, Layout as DashboardLayout } from '@/api/types/dashboard';
+import { Component } from '@/api/types/dashboard';
+import {NewComponent} from "@/components/features/dashboard/types/newComponent";
 
 export default function CustomDashboardPage() {
     const [isAddingComponent, setIsAddingComponent] = useState(false);
     const [components, setComponents] = useState<Component[]>([]);
-    const [layout, setLayout] = useState<DashboardLayout>({ rows: [] });
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const [initialComponents, initialLayout] = await Promise.all([
-                    DashboardService.getInitialComponents(),
-                    DashboardService.getInitialLayout()
-                ]);
+                const initialComponents = await DashboardService.getInitialComponents();
                 setComponents(initialComponents);
-                setLayout(initialLayout);
             } catch (error) {
                 console.error('Error fetching initial data:', error);
                 // Handle error (e.g., show error message to user)
@@ -32,32 +28,33 @@ export default function CustomDashboardPage() {
         fetchData();
     }, []);
 
-    const handleAddComponent = useCallback(async (newComponent: Omit<Component, 'id'> & { name: Component['name'] }) => {
+    // Update the handleAddComponent signature
+    const handleAddComponent = useCallback(async (newComponent: NewComponent) => {
         try {
-            const lastComponent = layout.rows[layout.rows.length - 1]?.components[0];
+            const lastComponent = components[components.length - 1];
             const newComponentLayout = {
-                x: (lastComponent?.x ?? 0) + (lastComponent?.w ?? 0),
-                y: lastComponent?.y ?? 0,
+                x: (lastComponent?.layout.x ?? 0) + (lastComponent?.layout.w ?? 0),
+                y: lastComponent?.layout.y ?? 0,
                 w: 4,
                 h: 4,
             };
 
-            const { component: addedComponent, layoutUpdate } = await DashboardService.addComponent(newComponent, newComponentLayout);
-            setComponents(prevComponents => [...prevComponents, addedComponent]);
-            setLayout(layoutUpdate);
+            const addedComponent: Component = {
+                ...newComponent,
+                id: Date.now().toString(),
+                layout: newComponentLayout,
+            };
 
+            setComponents(prevComponents => [...prevComponents, addedComponent]);
             setIsAddingComponent(false);
         } catch (error) {
             console.error('Error adding component:', error);
-            // Handle error (e.g., show error message to user)
         }
-    }, [layout]);
+    }, [components]);
 
     const handleRemoveComponent = useCallback(async (id: string) => {
         try {
-            const updatedLayout = await DashboardService.removeComponent(id);
             setComponents(prevComponents => prevComponents.filter(component => component.id !== id));
-            setLayout(updatedLayout);
         } catch (error) {
             console.error('Error removing component:', error);
             // Handle error (e.g., show error message to user)
@@ -66,25 +63,25 @@ export default function CustomDashboardPage() {
 
     const handleUpdateComponent = useCallback(async (id: string, updates: Partial<Omit<Component, 'id'>>) => {
         try {
-            const { component: updatedComponent, layoutUpdate } = await DashboardService.updateComponent(id, updates);
             setComponents(prevComponents =>
                 prevComponents.map(component =>
-                    component.id === id ? updatedComponent : component
+                    component.id === id ? { ...component, ...updates } : component
                 )
             );
-            if (layoutUpdate) {
-                setLayout(layoutUpdate);
-            }
         } catch (error) {
             console.error('Error updating component:', error);
             // Handle error (e.g., show error message to user)
         }
     }, []);
 
-    const handleUpdateLayout = useCallback(async (newLayout: DashboardLayout) => {
+    const handleUpdateLayout = useCallback(async (newLayout: any) => {
         try {
-            const updatedLayout = await DashboardService.updateLayout(newLayout);
-            setLayout(updatedLayout);
+            setComponents(prevComponents =>
+                prevComponents.map(component => {
+                    const layoutItem = newLayout.find((item: any) => item.i === component.id);
+                    return layoutItem ? { ...component, layout: { x: layoutItem.x, y: layoutItem.y, w: layoutItem.w, h: layoutItem.h } } : component;
+                })
+            );
         } catch (error) {
             console.error('Error updating layout:', error);
             // Handle error (e.g., show error message to user)
@@ -102,8 +99,6 @@ export default function CustomDashboardPage() {
                     </Button>
                 </div>
                 <DashboardGrid
-                    components={components}
-                    layout={layout}
                     onRemoveComponent={handleRemoveComponent}
                     onUpdateComponent={handleUpdateComponent}
                     onUpdateLayout={handleUpdateLayout}
@@ -118,4 +113,3 @@ export default function CustomDashboardPage() {
         </PageLayout>
     );
 }
-
