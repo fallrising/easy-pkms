@@ -9,6 +9,87 @@ import { Input } from '@/components/common/input';
 import { Label } from '@/components/common/label';
 import { Component, ComponentType } from '@/api/types/dashboard';
 import { NewComponent } from '@/components/features/dashboard/types/newComponent';
+import { ChartSettings, TableSettings, QuoteSettings, ImageSettings, CartesianChartSettings, PieChartSettings } from '@/api/types/dashboard';
+
+type ComponentSettings = ChartSettings | TableSettings | QuoteSettings | ImageSettings;
+
+function getDefaultChartSettings(data: Record<string, any>): ChartSettings {
+  const chartType = data.type || 'bar';
+  if (chartType === 'pie') {
+    return {
+      type: 'pie',
+      title: data.title || 'New Pie Chart',
+      dataKey: 'value',
+      nameKey: 'category',
+      showLegend: data.showLegend ?? true,
+      data: [
+        { category: 'A', value: 10 },
+        { category: 'B', value: 20 },
+        { category: 'C', value: 30 },
+      ],
+      colors: ['#0088FE', '#00C49F', '#FFBB28']
+    };
+  }
+
+  return {
+    type: chartType as 'bar' | 'line' | 'area',
+    title: data.title || 'New Chart',
+    xAxisKey: data.xAxisKey || 'category',
+    showGrid: data.showGrid ?? true,
+    showLegend: data.showLegend ?? true,
+    series: [{
+      dataKey: 'value',
+      name: 'Value',
+      color: '#8884d8'
+    }],
+    data: [
+      { category: 'A', value: 10 },
+      { category: 'B', value: 20 },
+      { category: 'C', value: 30 },
+    ]
+  };
+}
+
+function getDefaultTableSettings(data: Record<string, any>): TableSettings {
+  return {
+    columns: data.columns || ['Column 1', 'Column 2'],
+    data: data.data || [
+      ['Row 1, Col 1', 'Row 1, Col 2'],
+      ['Row 2, Col 1', 'Row 2, Col 2'],
+    ]
+  };
+}
+
+function getDefaultQuoteSettings(data: Record<string, any>): QuoteSettings {
+  return {
+    text: data.text || 'Enter your quote here',
+    author: data.author || 'Author Name'
+  };
+}
+
+function getDefaultImageSettings(data: Record<string, any>): ImageSettings {
+  return {
+    src: data.src || '/api/placeholder/300/200',
+    alt: data.alt || 'Placeholder image',
+    title: data.title || 'New Image'
+  };
+}
+
+function getDefaultSettings(type: ComponentType, data: Record<string, any>): ComponentSettings {
+  switch (type) {
+    case 'Chart':
+      return getDefaultChartSettings(data);
+    case 'Table':
+      return getDefaultTableSettings(data);
+    case 'Quote':
+      return getDefaultQuoteSettings(data);
+    case 'Image':
+      return getDefaultImageSettings(data);
+    default:
+      throw new Error(`Unsupported component type: ${type}`);
+  }
+}
+
 
 interface AddComponentDialogProps {
   onClose: () => void;
@@ -22,60 +103,14 @@ export function AddComponentDialog({ onClose, onAddComponent }: AddComponentDial
   const handleAddComponent = () => {
     if (!componentType) return;
 
-    const newComponent: Omit<Component, 'id'> = {
+    const settings = getDefaultSettings(componentType, formData);
+    const newComponent: NewComponent = {
       type: componentType,
-      settings: getDefaultSettings(componentType, formData),
-      layout: { x: 0, y: 0, w: 4, h: 4 }
+      settings
     };
 
     onAddComponent(newComponent);
     onClose();
-  };
-
-  const getDefaultSettings = (type: ComponentType, data: Record<string, any>) => {
-    switch (type) {
-      case 'Chart':
-        return {
-          type: data.type || 'bar',
-          title: data.title || 'New Chart',
-          xAxisKey: data.xAxisKey || 'category',
-          showGrid: data.showGrid ?? true,
-          showLegend: data.showLegend ?? true,
-          series: data.series || [
-            {
-              dataKey: 'value',
-              name: 'Value',
-              color: '#8884d8'
-            }
-          ],
-          data: [
-            { category: 'A', value: 10 },
-            { category: 'B', value: 20 },
-            { category: 'C', value: 30 },
-          ]
-        };
-      case 'Table':
-        return {
-          columns: data.columns || ['Column 1', 'Column 2'],
-          data: data.data || [
-            ['Row 1, Col 1', 'Row 1, Col 2'],
-            ['Row 2, Col 1', 'Row 2, Col 2'],
-          ]
-        };
-      case 'Quote':
-        return {
-          text: data.text || 'Enter your quote here',
-          author: data.author || 'Author Name'
-        };
-      case 'Image':
-        return {
-          src: data.src || 'https://via.placeholder.com/300',
-          alt: data.alt || 'Placeholder image',
-          title: data.title || 'New Image'
-        };
-      default:
-        return {};
-    }
   };
 
   const handleFormChange = (field: string, value: any) => {

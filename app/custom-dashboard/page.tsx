@@ -9,7 +9,11 @@ import { PlusCircle } from 'lucide-react';
 import { AddComponentDialog } from '@/components/features/dashboard/add-component-dialog';
 import { DashboardService } from '@/api/services/dashboard.service';
 import { Component } from '@/api/types/dashboard';
-import {NewComponent} from "@/components/features/dashboard/types/newComponent";
+import {
+    createTypedComponent,
+    createTypedComponentUpdate,
+    NewComponent
+} from "@/components/features/dashboard/types/newComponent";
 
 export default function CustomDashboardPage() {
     const [isAddingComponent, setIsAddingComponent] = useState(false);
@@ -39,11 +43,11 @@ export default function CustomDashboardPage() {
                 h: 4,
             };
 
-            const addedComponent: Component = {
-                ...newComponent,
-                id: Date.now().toString(),
-                layout: newComponentLayout,
-            };
+            const addedComponent = createTypedComponent(
+                newComponent,
+                Date.now().toString(),
+                newComponentLayout
+            );
 
             setComponents(prevComponents => [...prevComponents, addedComponent]);
             setIsAddingComponent(false);
@@ -65,12 +69,13 @@ export default function CustomDashboardPage() {
         try {
             setComponents(prevComponents =>
                 prevComponents.map(component =>
-                    component.id === id ? { ...component, ...updates } : component
+                    component.id === id
+                        ? createTypedComponentUpdate(component, updates)
+                        : component
                 )
             );
         } catch (error) {
             console.error('Error updating component:', error);
-            // Handle error (e.g., show error message to user)
         }
     }, []);
 
