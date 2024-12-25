@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/types/calendar.ts
 export interface Event {
     id: string;
     title: string;

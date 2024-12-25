@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/bookmarks/batch-create-bookmarks.tsx
 'use client'
 
 import { useState } from 'react'

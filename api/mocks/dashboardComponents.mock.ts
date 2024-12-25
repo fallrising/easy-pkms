@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/dashboardComponents.mock.ts
 import { Component } from '@/api/types/dashboard';
 
 export const mockInitialComponents: Component[] = [

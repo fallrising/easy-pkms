@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/stat-skeleton.tsx
 import { Card, CardContent, CardHeader } from "@/components/common/card"
 import { Skeleton } from "@/components/common/skeleton"
 

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/calendar.service.ts
 import { Event } from "@/api/types/calendar";
 import { mockEvents } from "../mocks/calendar.mock";
 

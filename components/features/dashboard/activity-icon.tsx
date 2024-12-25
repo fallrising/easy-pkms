@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/activity-icon.tsx
 import { PlusCircle, Pencil, Trash2 } from 'lucide-react'
 import type { Activity } from '@/api/types/activity'
 

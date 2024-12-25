@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/layout.tsx
 import "@/styles/globals.css"
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@/components/providers/theme-provider"

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/button.tsx
 'use client'
 
 import * as React from "react"

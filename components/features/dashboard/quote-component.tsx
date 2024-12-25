@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/quote-component.tsx
 'use client'
 
 export function QuoteComponent({ data }: { data: { text: string; author: string } }) {

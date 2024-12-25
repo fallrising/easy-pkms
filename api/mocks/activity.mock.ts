@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/activity.mock.ts
 import { Activity } from '@/api'
 
 export const mockActivities: Activity[] = [

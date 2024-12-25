@@ -1,4 +1,4 @@
-// api/services/dashboard.service.ts
+// File Path: personal-info-manager/api/services/dashboard.service.ts
 import { mockInitialComponents } from '../mocks/dashboardComponents.mock';
 import { mockInitialLayout } from '../mocks/dashboardLayout.mock';
 import { Component, Layout, ComponentType } from '@/api/types/dashboard';

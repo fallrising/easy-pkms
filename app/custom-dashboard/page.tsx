@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/custom-dashboard/page.tsx
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';

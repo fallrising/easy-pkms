@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/card-list.tsx
 'use client'
 
 import { useEffect } from 'react'

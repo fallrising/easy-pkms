@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/bookmark.mock.ts
 import { Bookmark } from '@/api'
 
 export const mockBookmarks: Bookmark[] = [

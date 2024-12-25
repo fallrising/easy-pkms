@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useQuickActions.ts
 import { useState, useEffect, useCallback } from 'react'
 import { Action } from '@/api/types/action'
 import { ActionService } from '@/api/services/action.service'

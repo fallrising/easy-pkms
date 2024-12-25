@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/notes/page.tsx
 'use client'
 
 import { useState } from 'react'

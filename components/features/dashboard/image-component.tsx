@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/image-component.tsx
 import Image from 'next/image'
 
 interface ImageComponentProps {

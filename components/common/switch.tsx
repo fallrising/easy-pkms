@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/switch.tsx
 'use client'
 
 import * as React from "react"

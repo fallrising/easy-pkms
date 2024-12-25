@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/bookmarks/bookmark-item.tsx
 'use client'
 
 import { useState } from 'react'

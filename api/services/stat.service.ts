@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/stat.service.ts
 import { Stat } from '@/api'
 import { mockStats } from '../mocks/stat.mock'
 

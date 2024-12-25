@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/dashboard-grid.tsx
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Responsive, WidthProvider, Layout as GridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';

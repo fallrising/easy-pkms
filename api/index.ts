@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/index.ts
 // Export all types
 export type {
     Action,

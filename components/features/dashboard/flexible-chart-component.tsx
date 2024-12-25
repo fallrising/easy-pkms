@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/flexible-chart-component.tsx
 import React, { useMemo } from 'react';
 import {
     ResponsiveContainer,

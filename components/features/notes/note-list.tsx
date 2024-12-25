@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/notes/note-list.tsx
 'use client'
 
 import { NoteItem } from '@/components/features/notes/note-item'

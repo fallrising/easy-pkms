@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/add-component-dialog.tsx
 'use client'
 
 import { useState } from 'react'

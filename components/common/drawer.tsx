@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/drawer.tsx
 import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 

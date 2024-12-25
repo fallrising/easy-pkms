@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/dialog.tsx
 'use client'
 
 import * as React from "react"

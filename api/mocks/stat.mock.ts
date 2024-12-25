@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/stat.mock.ts
 import { Stat } from '@/api'
 
 export const mockStats: Stat[] = [

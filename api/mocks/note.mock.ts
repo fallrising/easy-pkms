@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/note.mock.ts
 import { Note } from '@/api'
 
 export const mockNotes: Note[] = [

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/textarea.tsx
 'use client'
 
 import * as React from "react"

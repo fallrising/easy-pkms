@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/search/search.tsx
 'use client'
 
 import { Search as SearchIcon } from "lucide-react";

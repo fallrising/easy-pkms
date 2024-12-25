@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/types/cards.ts
 export interface Card {
     id: string
     title: string

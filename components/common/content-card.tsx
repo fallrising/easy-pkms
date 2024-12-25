@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/content-card.tsx
 'use client'
 
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/common/card"

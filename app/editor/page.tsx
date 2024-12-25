@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/editor/page.tsx
 'use client'
 
 import React, { useState } from 'react';

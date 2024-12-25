@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/avatar.tsx
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 

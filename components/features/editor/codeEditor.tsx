@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/editor/codeEditor.tsx
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';

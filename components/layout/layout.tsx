@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/layout/layout.tsx
 'use client'
 
 import { Sidebar } from "./sidebar"

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/collapsible.tsx
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 
 const Collapsible = CollapsiblePrimitive.Root

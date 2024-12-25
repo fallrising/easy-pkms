@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/chart.tsx
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/cards/page.tsx
 'use client'
 
 import { Suspense } from 'react'

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/stats-grid.tsx
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/card"

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/tabs.tsx
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 

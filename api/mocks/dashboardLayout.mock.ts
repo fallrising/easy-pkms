@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/dashboardLayout.mock.ts
 import { Layout } from '@/api/types/dashboard';
 
 export const mockInitialLayout: Layout = {

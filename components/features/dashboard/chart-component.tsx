@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/chart-component.tsx
 import React from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 

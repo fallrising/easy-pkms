@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useStats.ts
 import { useState, useEffect, useCallback } from 'react'
 import { Stat } from '@/api/types/stat'
 import { StatService } from '@/api/services/stat.service'

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/search/SearchResults.tsx
 'use client'
 
 import { useInfiniteQuery } from "@tanstack/react-query";

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/activity.service.ts
 import { Activity } from '@/api'
 import { mockActivities } from '../mocks/activity.mock'
 

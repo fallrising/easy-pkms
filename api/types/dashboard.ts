@@ -1,5 +1,4 @@
-// api/types/dashboard.ts
-
+// File Path: personal-info-manager/api/types/dashboard.ts
 // Chart series configuration
 export interface ChartSeries {
     dataKey: string;

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/bookmarks/bookmark-list.tsx
 'use client'
 
 import { BookmarkItem } from '@/components/features/bookmarks/bookmark-item'

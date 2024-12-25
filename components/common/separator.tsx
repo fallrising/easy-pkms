@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/separator.tsx
 import * as SeparatorPrimitive from "@radix-ui/react-separator"
 import * as React from "react"
 import { cn } from "@/api/utils"

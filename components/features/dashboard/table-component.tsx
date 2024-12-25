@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/table-component.tsx
 'use client'
 
 import {

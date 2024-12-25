@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/card.service.ts
 import { Card, GetCardsOptions } from '@/api'
 import { mockCards } from '../mocks/card.mock'
 

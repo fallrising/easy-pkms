@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useNotes.ts
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Note, SortKey } from '@/api/types/note'
 import { NoteService } from '@/api/services/note.service'

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/quick-actions.tsx
 'use client'
 
 import { Button } from "@/components/common/button"

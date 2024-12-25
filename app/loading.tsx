@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/app/loading.tsx
 import { Card, CardContent, CardHeader } from "@/components/common/card"
 import { Skeleton } from "@/components/common/skeleton"
 import { Layout } from "@/components/layout/layout"

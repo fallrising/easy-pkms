@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useInfiniteCards.ts
 // src/hooks/useInfiniteCards.ts
 import { useState, useEffect, useCallback } from 'react'
 import { Card, GetCardsOptions } from '@/api/types/cards'

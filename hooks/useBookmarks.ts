@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useBookmarks.ts
 import { useState, useEffect, useCallback } from 'react'
 import { Bookmark, UpdateBookmarkData } from '@/api/types/bookmark'
 import { BookmarkService } from '@/api/services/bookmark.service'

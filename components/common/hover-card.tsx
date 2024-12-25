@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/hover-card.tsx
 import * as React from "react"
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/types/index.ts
 export * from './action'
 export * from './activity'
 export * from './bookmark'

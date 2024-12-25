@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/providers/theme-provider.tsx
 "use client"
 
 import * as React from "react"

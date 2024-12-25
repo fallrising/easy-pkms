@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/utils/icon-map.ts
 import {
     FileText,
     Link,

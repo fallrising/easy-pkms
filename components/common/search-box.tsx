@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/search-box.tsx
 'use client'
 
 import { useState, useEffect } from 'react'

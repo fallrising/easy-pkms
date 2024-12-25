@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/checkbox.tsx
 import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { Check } from "lucide-react"

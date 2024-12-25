@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/layout/sidebar.tsx
 "use client"
 
 import { cn } from "@/api/utils"

@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/carousel.tsx
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,

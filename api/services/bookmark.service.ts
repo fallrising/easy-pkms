@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/bookmark.service.ts
 import { Bookmark, UpdateBookmarkData } from '@/api'
 import { mockBookmarks } from '../mocks/bookmark.mock'
 

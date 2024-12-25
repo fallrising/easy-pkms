@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/skeleton.tsx
 'use client'
 
 import { cn } from "@/api/utils"

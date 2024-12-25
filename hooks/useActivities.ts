@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/hooks/useActivities.ts
 // src/hooks/useActivities.ts
 import { useState, useEffect, useCallback } from 'react'
 import { Activity } from '@/api/types/activity'

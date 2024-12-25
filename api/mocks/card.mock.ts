@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/card.mock.ts
 import { Card } from '@/api';
 
 export const mockCards: Card[] = [

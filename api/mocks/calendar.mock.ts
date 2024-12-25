@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/mocks/calendar.mock.ts
 import { Event } from "@/api/types/calendar";
 
 export const mockEvents: Event[] = [

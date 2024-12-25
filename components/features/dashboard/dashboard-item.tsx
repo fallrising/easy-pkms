@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/dashboard-item.tsx
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/card';
 import { Button } from '@/components/common/button';

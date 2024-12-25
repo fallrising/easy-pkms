@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/types/note.ts
 export interface Note {
     id: string
     title: string

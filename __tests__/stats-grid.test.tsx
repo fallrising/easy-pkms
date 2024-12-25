@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/__tests__/stats-grid.test.tsx
 import { render, screen } from "@testing-library/react"
 import { StatsGrid } from "@/components/features/dashboard/stats-grid"
 

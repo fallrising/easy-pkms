@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/features/dashboard/activity-feed.tsx
 // src/components/features/activities/activity-feed.tsx
 'use client'
 

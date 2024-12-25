@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/components/common/label.tsx
 'use client'
 
 import * as React from "react"

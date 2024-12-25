@@ -1,3 +1,4 @@
+// File Path: personal-info-manager/api/services/note.service.ts
 import { Note } from '@/api'
 import { mockNotes } from '../mocks/note.mock'
 
