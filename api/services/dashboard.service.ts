@@ -26,17 +26,30 @@ export class DashboardService {
     static async updateLayout(newLayout: Layout): Promise<Layout> {
         await this.delay();
         const componentIds = this.storage.components.map(c => c.id);
-        const allComponentsExist = newLayout.rows.every(row =>
-            row.components.every(component =>
-                componentIds.includes(component.id)
-            )
-        );
+        const validLayout: Layout = {
+            rows: newLayout.rows.map(row => ({
+                ...row,
+                components: row.components.filter(comp => componentIds.includes(comp.id))
+            })).filter(row => row.components.length > 0)
+        };
 
-        if (!allComponentsExist) {
-            throw new Error('Invalid layout: references non-existent components');
-        }
+        // Ensure all components have a layout entry
+        this.storage.components.forEach(component => {
+            const hasLayout = validLayout.rows.some(row =>
+                row.components.some(comp => comp.id === component.id)
+            );
+            if (!hasLayout) {
+                validLayout.rows[0].components.push({
+                    id: component.id,
+                    x: 0,
+                    y: 0,
+                    w: 2,
+                    h: 2
+                });
+            }
+        });
 
-        this.storage.layout = { ...newLayout };
+        this.storage.layout = validLayout;
         return { ...this.storage.layout };
     }
 

@@ -48,15 +48,31 @@ export function DashboardGrid({
     }, [onUpdateLayout]);
 
     const getLayoutFromComponents = useCallback(() => {
-        const flattenedComponents = layout.rows.flatMap(row => row.components);
-        return flattenedComponents.map(component => ({
-            i: component.id,
-            x: component.x,
-            y: component.y,
-            w: component.w,
-            h: component.h,
-        }));
-    }, [layout]);
+        return components.map((component, index) => {
+            const componentLayout = layout.rows
+                .flatMap(row => row.components)
+                .find(item => item.id === component.id);
+
+            if (componentLayout) {
+                return {
+                    i: component.id,
+                    x: componentLayout.x,
+                    y: componentLayout.y,
+                    w: componentLayout.w,
+                    h: componentLayout.h,
+                };
+            } else {
+                // Provide default layout for components not in the layout
+                return {
+                    i: component.id,
+                    x: (index * 2) % 12,
+                    y: Math.floor(index / 6) * 4,
+                    w: 2,
+                    h: 2,
+                };
+            }
+        });
+    }, [components, layout]);
 
     return (
         <ResponsiveGridLayout

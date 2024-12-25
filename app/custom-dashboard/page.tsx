@@ -82,8 +82,8 @@ export default function CustomDashboardPage() {
 
     const handleUpdateLayout = useCallback(async (newLayout: DashboardLayout) => {
         try {
-            await DashboardService.updateLayout(newLayout);
-            setLayout(newLayout);
+            const updatedLayout = await DashboardService.updateLayout(newLayout);
+            setLayout(updatedLayout);
         } catch (error) {
             console.error('Error updating layout:', error);
             // Handle error (e.g., show error message to user)
