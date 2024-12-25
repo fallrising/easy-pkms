@@ -63,6 +63,12 @@ export interface Component {
 export interface Layout {
     rows: {
         id: string;
-        components: string[];
+        components: {
+            id: string;
+            x: number;
+            y: number;
+            w: number;
+            h: number;
+        }[];
     }[];
 }

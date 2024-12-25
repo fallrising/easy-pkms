@@ -1,7 +1,7 @@
 // api/services/dashboard.service.ts
 import { mockInitialComponents } from '../mocks/dashboardComponents.mock';
 import { mockInitialLayout } from '../mocks/dashboardLayout.mock';
-import { Component, Layout, ComponentType, ComponentSettings } from '@/api/types/dashboard';
+import { Component, Layout, ComponentType } from '@/api/types/dashboard';
 
 export class DashboardService {
     private static delay(ms: number = 500): Promise<void> {
@@ -27,8 +27,8 @@ export class DashboardService {
         await this.delay();
         const componentIds = this.storage.components.map(c => c.id);
         const allComponentsExist = newLayout.rows.every(row =>
-            row.components.every(componentId =>
-                componentIds.includes(componentId)
+            row.components.every(component =>
+                componentIds.includes(component.id)
             )
         );
 
@@ -41,8 +41,9 @@ export class DashboardService {
     }
 
     static async addComponent(
-        component: Omit<Component, 'id'> & { name: ComponentType }
-    ): Promise<Component> {
+        component: Omit<Component, 'id'> & { name: ComponentType },
+        layoutInfo: { x: number; y: number; w: number; h: number }
+    ): Promise<{ component: Component; layoutUpdate: Layout }> {
         await this.delay();
         const newComponent: Component = {
             ...component,
@@ -53,10 +54,23 @@ export class DashboardService {
         this.validateComponentSettings(newComponent);
 
         this.storage.components.push(newComponent);
-        return { ...newComponent };
+
+        // Update layout
+        const updatedLayout = { ...this.storage.layout };
+        updatedLayout.rows.push({
+            id: `row-${newComponent.id}`,
+            components: [{ id: newComponent.id, ...layoutInfo }]
+        });
+
+        this.storage.layout = updatedLayout;
+
+        return {
+            component: { ...newComponent },
+            layoutUpdate: { ...updatedLayout }
+        };
     }
 
-    static async removeComponent(id: string): Promise<void> {
+    static async removeComponent(id: string): Promise<Layout> {
         await this.delay();
         const index = this.storage.components.findIndex(c => c.id === id);
         if (index === -1) {
@@ -64,15 +78,23 @@ export class DashboardService {
         }
 
         this.storage.components.splice(index, 1);
-        this.storage.layout.rows = this.storage.layout.rows.filter(row =>
-            !row.components.includes(id)
-        );
+
+        // Update layout
+        const updatedLayout = {
+            rows: this.storage.layout.rows.filter(row =>
+                !row.components.some(comp => comp.id === id)
+            )
+        };
+        this.storage.layout = updatedLayout;
+
+        return { ...updatedLayout };
     }
 
     static async updateComponent(
         id: string,
-        updates: Partial<Omit<Component, 'id'>>
-    ): Promise<Component> {
+        updates: Partial<Omit<Component, 'id'>>,
+        layoutUpdates?: { x?: number; y?: number; w?: number; h?: number }
+    ): Promise<{ component: Component; layoutUpdate: Layout | null }> {
         await this.delay();
         const index = this.storage.components.findIndex(c => c.id === id);
         if (index === -1) {
@@ -90,7 +112,27 @@ export class DashboardService {
         this.validateComponentSettings(updatedComponent);
 
         this.storage.components[index] = updatedComponent;
-        return { ...updatedComponent };
+
+        let updatedLayout: Layout | null = null;
+        if (layoutUpdates) {
+            updatedLayout = { ...this.storage.layout };
+            for (let row of updatedLayout.rows) {
+                const componentIndex = row.components.findIndex(comp => comp.id === id);
+                if (componentIndex !== -1) {
+                    row.components[componentIndex] = {
+                        ...row.components[componentIndex],
+                        ...layoutUpdates
+                    };
+                    break;
+                }
+            }
+            this.storage.layout = updatedLayout;
+        }
+
+        return {
+            component: { ...updatedComponent },
+            layoutUpdate: updatedLayout
+        };
     }
 
     private static validateComponentSettings(component: Component): void {
