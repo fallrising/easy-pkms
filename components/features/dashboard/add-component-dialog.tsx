@@ -7,9 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/common/dialog";
 import { Input } from '@/components/common/input';
 import { Label } from '@/components/common/label';
-import { Component, ComponentType } from '@/api/types/dashboard';
+import { ComponentType } from '@/api/types/dashboard';
 import { NewComponent } from '@/components/features/dashboard/types/newComponent';
-import { ChartSettings, TableSettings, QuoteSettings, ImageSettings, CartesianChartSettings, PieChartSettings } from '@/api/types/dashboard';
+import { ChartSettings, TableSettings, QuoteSettings, ImageSettings } from '@/api/types/dashboard';
 
 type ComponentSettings = ChartSettings | TableSettings | QuoteSettings | ImageSettings;
 
