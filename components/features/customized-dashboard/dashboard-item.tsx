@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/common/card';
 import { Button } from '@/components/common/button';
 import { X, Edit } from 'lucide-react';
-import { TableComponent } from '@/components/features/dashboard/table-component';
+import { TableComponent } from '@/components/features/customized-dashboard/table-component';
 import { QuoteComponent } from '@/components/features/dashboard/quote-component';
-import { ImageComponent } from '@/components/features/dashboard/image-component';
-import { FlexibleChart } from '@/components/features/dashboard/flexible-chart-component';
+import { ImageComponent } from '@/components/features/customized-dashboard/image-component';
+import { FlexibleChart } from '@/components/features/customized-dashboard/flexible-chart-component';
 import { DashboardService } from '@/api/services/dashboard.service';
 import {
     Component,

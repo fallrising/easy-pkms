@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { DashboardItem } from '@/components/features/dashboard/dashboard-item';
+import { DashboardItem } from '@/components/features/customized-dashboard/dashboard-item';
 import { DashboardService } from '@/api/services/dashboard.service';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);

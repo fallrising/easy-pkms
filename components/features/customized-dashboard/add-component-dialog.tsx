@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from '@/components/common/input';
 import { Label } from '@/components/common/label';
 import { ComponentType } from '@/api/types/dashboard';
-import { NewComponent } from '@/components/features/dashboard/types/newComponent';
+import { NewComponent } from '@/components/features/customized-dashboard/types/newComponent';
 import { ChartSettings, TableSettings, QuoteSettings, ImageSettings } from '@/api/types/dashboard';
 
 type ComponentSettings = ChartSettings | TableSettings | QuoteSettings | ImageSettings;

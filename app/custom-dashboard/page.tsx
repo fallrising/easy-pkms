@@ -3,17 +3,17 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { Layout as PageLayout } from '@/components/layout/layout';
-import { DashboardGrid } from '@/components/features/dashboard/dashboard-grid';
+import { DashboardGrid } from '@/components/features/customized-dashboard/dashboard-grid';
 import { Button } from '@/components/common/button';
 import { PlusCircle } from 'lucide-react';
-import { AddComponentDialog } from '@/components/features/dashboard/add-component-dialog';
+import { AddComponentDialog } from '@/components/features/customized-dashboard/add-component-dialog';
 import { DashboardService } from '@/api/services/dashboard.service';
 import { Component } from '@/api/types/dashboard';
 import {
     createTypedComponent,
     createTypedComponentUpdate,
     NewComponent
-} from "@/components/features/dashboard/types/newComponent";
+} from "@/components/features/customized-dashboard/types/newComponent";
 
 export default function CustomDashboardPage() {
     const [isAddingComponent, setIsAddingComponent] = useState(false);
