@@ -29,8 +29,8 @@ export function UploadDocumentModal({ open, onClose }: UploadDocumentModalProps)
         const newDocument = {
             name: file.name,
             type: file.type,
-            size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
-            lastModified: new Date().toISOString(),
+            size: `${(file.size / 1024 / 1024).toFixed(2)} MB`, // Accurate size in MB
+            lastModified: Date.now(), // Current Unix time in milliseconds
         }
 
         await createDocument(newDocument)

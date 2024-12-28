@@ -15,6 +15,10 @@ export default function DocumentsPage() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
   const { documents, isLoading, hasMore, loadMore, deleteDocument } = useInfiniteDocuments({ search: searchTerm })
 
+  const formatTimestamp = (unixTime: number) => {
+    return new Date(unixTime).toLocaleString() // Format Unix time to a readable timestamp
+  }
+
   const filteredDocuments = documents.filter(doc =>
       doc.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -54,7 +58,7 @@ export default function DocumentsPage() {
                     <TableCell>{doc.name}</TableCell>
                     <TableCell>{doc.type}</TableCell>
                     <TableCell>{doc.size}</TableCell>
-                    <TableCell>{doc.lastModified}</TableCell>
+                    <TableCell>{formatTimestamp(doc.lastModified)}</TableCell>
                     <TableCell>
                       <Button variant="ghost" size="sm" onClick={() => handleDelete(doc.id)}>
                         <Trash2 className="h-4 w-4" />

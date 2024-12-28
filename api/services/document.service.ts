@@ -36,7 +36,7 @@ export class DocumentService {
         const newDocument: Document = {
             ...document,
             id: Date.now().toString(),
-            lastModified: new Date().toISOString(),
+            lastModified: Date.now(), // Current Unix time in milliseconds
         }
         mockDocuments.unshift(newDocument)
         return newDocument
@@ -49,7 +49,7 @@ export class DocumentService {
         mockDocuments[index] = {
             ...mockDocuments[index],
             ...document,
-            lastModified: new Date().toISOString()
+            lastModified: Date.now(), // Current Unix time in milliseconds
         }
         return mockDocuments[index]
     }

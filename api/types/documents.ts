@@ -4,7 +4,7 @@ export interface Document {
     name: string
     type: string
     size: string
-    lastModified: string
+    lastModified: number
 }
 
 export interface GetDocumentsOptions {
