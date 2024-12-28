@@ -5,7 +5,6 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 import { Card as CardType } from "@/api/types/cards"
 import { format } from "date-fns"
 
-// Add type to your CardType interface (if not already present)
 interface ContentCardProps extends CardType {
     onEdit?: (id: string, card: Partial<CardType>) => void
     onDelete?: (id: string) => void
@@ -38,7 +37,6 @@ export function ContentCard({
                     </span>
                 </div>
             </CardHeader>
-            {/* Rest of the component remains the same */}
             <CardContent className="flex-grow">
                 <CardDescription>{content}</CardDescription>
             </CardContent>
