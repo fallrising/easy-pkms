@@ -1,41 +1,37 @@
-// File Path: personal-info-manager/components/features/documents/upload-document-modal.tsx
-'use client'
-
-import { useState } from 'react'
-import { Button } from '@/components/common/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/common/dialog"
-import { Input } from '@/components/common/input'
-import { Label } from '@/components/common/label'
-import { useInfiniteDocuments } from '@/hooks/useInfiniteDocuments'
+import { useState } from 'react';
+import { Button } from '@/components/common/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/common/dialog";
+import { Input } from '@/components/common/input';
+import { Label } from '@/components/common/label';
+import { Document } from '@/api/types/documents';
 
 interface UploadDocumentModalProps {
-    open: boolean
-    onClose: () => void
+    open: boolean;
+    onClose: () => void;
+    createDocument: (document: Omit<Document, 'id' | 'lastModified'>) => Promise<void>;
 }
 
-export function UploadDocumentModal({ open, onClose }: UploadDocumentModalProps) {
-    const [file, setFile] = useState<File | null>(null)
-    const { createDocument } = useInfiniteDocuments()
+export function UploadDocumentModal({ open, onClose, createDocument }: UploadDocumentModalProps) {
+    const [file, setFile] = useState<File | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0])
+            setFile(e.target.files[0]);
         }
-    }
+    };
 
     const handleUpload = async () => {
-        if (!file) return
+        if (!file) return;
 
         const newDocument = {
             name: file.name,
             type: file.type,
             size: `${(file.size / 1024 / 1024).toFixed(2)} MB`, // Accurate size in MB
-            lastModified: Date.now(), // Current Unix time in milliseconds
-        }
+        };
 
-        await createDocument(newDocument)
-        onClose()
-    }
+        await createDocument(newDocument); // Pass the correct object
+        onClose();
+    };
 
     return (
         <Dialog open={open} onOpenChange={onClose}>
@@ -60,5 +56,5 @@ export function UploadDocumentModal({ open, onClose }: UploadDocumentModalProps)
                 </div>
             </DialogContent>
         </Dialog>
-    )
+    );
 }

@@ -32,14 +32,14 @@ export class DocumentService {
     }
 
     static async createDocument(document: Omit<Document, 'id' | 'lastModified'>): Promise<Document> {
-        await this.delay()
+        await this.delay();
         const newDocument: Document = {
             ...document,
             id: Date.now().toString(),
-            lastModified: Date.now(), // Current Unix time in milliseconds
-        }
-        mockDocuments.unshift(newDocument)
-        return newDocument
+            lastModified: Date.now(), // Add the missing properties
+        };
+        mockDocuments.unshift(newDocument);
+        return newDocument;
     }
 
     static async updateDocument(id: string, document: Partial<Document>): Promise<Document> {

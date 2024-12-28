@@ -13,7 +13,7 @@ import { UploadDocumentModal } from '@/components/features/documents/upload-docu
 export default function DocumentsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
-  const { documents, isLoading, hasMore, loadMore, deleteDocument } = useInfiniteDocuments({ search: searchTerm })
+  const { documents, isLoading, hasMore, loadMore, deleteDocument, createDocument } = useInfiniteDocuments({ search: searchTerm })
 
   const formatTimestamp = (unixTime: number) => {
     return new Date(unixTime).toLocaleString() // Format Unix time to a readable timestamp
@@ -73,7 +73,11 @@ export default function DocumentsPage() {
                 {isLoading ? 'Loading...' : 'Load More'}
               </Button>
           )}
-          <UploadDocumentModal open={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} />
+          <UploadDocumentModal
+              open={isUploadModalOpen}
+              onClose={() => setIsUploadModalOpen(false)}
+              createDocument={createDocument} // Pass the createDocument function
+          />
         </div>
       </Layout>
   )

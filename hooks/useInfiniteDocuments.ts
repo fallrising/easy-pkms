@@ -34,13 +34,13 @@ export function useInfiniteDocuments(options: GetDocumentsOptions = {}) {
 
     const createDocument = useCallback(async (document: Omit<Document, 'id' | 'lastModified'>) => {
         try {
-            const newDocument = await DocumentService.createDocument(document)
-            setDocuments(prevDocuments => [newDocument, ...prevDocuments])
+            const newDocument = await DocumentService.createDocument(document);
+            setDocuments(prevDocuments => [newDocument, ...prevDocuments]);
         } catch (error) {
-            console.error('Failed to create document:', error)
-            throw error
+            console.error('Failed to create document:', error);
+            throw error;
         }
-    }, [])
+    }, []);
 
     const deleteDocument = useCallback(async (id: string) => {
         try {
