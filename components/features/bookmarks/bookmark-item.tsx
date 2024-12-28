@@ -34,14 +34,12 @@ export function BookmarkItem({ bookmark, onDelete, onUpdate }: BookmarkItemProps
   }
 
   const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this bookmark?')) {
       try {
         await deleteBookmark(bookmark.id)
         onDelete(bookmark.id)
       } catch (error) {
         console.error('Failed to delete bookmark:', error)
       }
-    }
   }
 
   return (

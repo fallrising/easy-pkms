@@ -32,7 +32,7 @@ export function useBookmarks() {
         try {
             const bookmarksToCreate = Array.isArray(bookmarkInput) ? bookmarkInput : [bookmarkInput]
             const newBookmarks = await BookmarkService.createBookmarks(bookmarksToCreate)
-            setBookmarks(prev => [...newBookmarks, ...prev])
+            setBookmarks(prev => [...newBookmarks, ...prev]) // Update local state
             return newBookmarks
         } catch (err) {
             throw err instanceof Error ? err : new Error('Failed to create bookmarks')
