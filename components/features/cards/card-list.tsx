@@ -4,7 +4,7 @@
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useInfiniteCards } from '@/hooks/useInfiniteCards'
-import { ContentCard } from "@/components/common/content-card"
+import { ContentCard } from "@/components/features/cards/content-card"
 import {Card} from "@/api";
 
 interface CardListProps {
@@ -14,7 +14,7 @@ interface CardListProps {
 }
 
 export function CardList({ searchQuery, filterType, filterId }: CardListProps) {
-    const { cards, isLoading, hasMore, loadMore, updateCard, deleteCard, reset } = useInfiniteCards({
+    const {cards, isLoading, hasMore, loadMore, updateCard, deleteCard, reset} = useInfiniteCards({
         search: searchQuery,
         type: filterType,
         id: filterId
@@ -42,12 +42,14 @@ export function CardList({ searchQuery, filterType, filterId }: CardListProps) {
     }
 
     const handleDelete = async (id: string) => {
-        try {
-            await deleteCard(id)
-        } catch (error) {
-            console.error('Failed to delete card:', error)
+        if (window.confirm('Are you sure you want to delete this card?')) {
+            try {
+                await deleteCard(id);
+            } catch (error) {
+                console.error('Failed to delete card:', error);
+            }
         }
-    }
+    };
 
     if (cards.length === 0 && !isLoading) {
         return (
@@ -72,7 +74,7 @@ export function CardList({ searchQuery, filterType, filterId }: CardListProps) {
                     Loading...
                 </div>
             )}
-            <div ref={ref} className="h-10" />
+            <div ref={ref} className="h-10"/>
         </div>
     )
 }

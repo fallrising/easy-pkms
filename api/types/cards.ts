@@ -3,7 +3,6 @@ export interface Card {
     id: string
     title: string
     content: string
-    logo: string
     status: string
     createdAt: string
     updatedAt: string

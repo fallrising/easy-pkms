@@ -4,8 +4,6 @@
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/common/card"
 import { Card as CardType } from "@/api/types/cards"
 import { format } from "date-fns"
-// Import commonly used Lucide icons
-import { FileText, Image, Video, Music, Code, Folder, File } from 'lucide-react'
 
 // Add type to your CardType interface (if not already present)
 interface ContentCardProps extends CardType {
@@ -14,43 +12,10 @@ interface ContentCardProps extends CardType {
     type?: 'document' | 'image' | 'video' | 'audio' | 'code' | 'folder' | string
 }
 
-// Create a component for the logo
-const CardLogo = ({ logo, type, title }: { logo: string | undefined, type: string | undefined, title: string }) => {
-    // Map of content types to icons
-    const iconMap = {
-        document: FileText,
-        image: Image,
-        video: Video,
-        audio: Music,
-        code: Code,
-        folder: Folder
-    };
-
-    // If custom SVG logo is provided, use it
-    if (logo) {
-        return (
-            <div
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 p-1.5"
-                dangerouslySetInnerHTML={{ __html: logo }}
-            />
-        );
-    }
-
-    // Get the appropriate icon based on type, or use File as default
-    const Icon = type && type in iconMap ? iconMap[type as keyof typeof iconMap] : File;
-
-    return (
-        <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center">
-            <Icon className="w-4 h-4 text-slate-600" />
-        </div>
-    );
-};
-
 export function ContentCard({
                                 id,
                                 title,
                                 content,
-                                logo,
                                 status,
                                 type, // Add this prop
                                 createdAt,
@@ -63,7 +28,6 @@ export function ContentCard({
             <CardHeader>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                        <CardLogo logo={logo} type={type} title={title} />
                         <CardTitle className="text-lg font-semibold">{title}</CardTitle>
                     </div>
                     <span className={`text-sm capitalize px-2 py-1 rounded-full ${
@@ -92,7 +56,7 @@ export function ContentCard({
                 <div className="flex space-x-2">
                     {onEdit && (
                         <button
-                            onClick={() => onEdit(id, { title, content, logo, status })}
+                            onClick={() => onEdit(id, { title, content, status })}
                             className="hover:text-foreground"
                         >
                             Edit

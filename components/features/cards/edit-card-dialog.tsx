@@ -40,7 +40,6 @@ export function EditCardDialog({ card, onClose, onUpdate, onCreate }: EditCardDi
         await onCreate({
           title: formData.title,
           content: formData.content,
-          logo: formData.logo,
           status: formData.status
         })
       }

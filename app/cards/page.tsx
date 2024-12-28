@@ -2,9 +2,9 @@
 'use client'
 
 import { Suspense } from 'react'
-import { CardList } from '@/components/common/card-list'
-import { CreateCardButton } from '@/components/common/create-card-button'
-import { SearchBox } from '@/components/common/search-box'
+import { CardList } from '@/components/features/cards/card-list'
+import { CreateCardButton } from '@/components/features/cards/create-card-button'
+import { SearchBox } from '@/components/features/cards/search-box'
 import { Layout } from '@/components/layout/layout'
 import {useSearchParams} from "next/navigation";
 

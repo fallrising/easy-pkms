@@ -17,7 +17,8 @@ export function BookmarkList() {
     } = useBookmarks()
 
     const handleDelete = async (id: string) => {
-        try {
+        if (window.confirm('Are you sure you want to delete this card?')) {
+            try {
             await deleteBookmark(id)
         } catch (error) {
             console.error('Failed to delete bookmark:', error)
@@ -67,4 +68,5 @@ export function BookmarkList() {
             </div>
         </div>
     )
+  }
 }

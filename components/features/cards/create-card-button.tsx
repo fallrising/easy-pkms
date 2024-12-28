@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/common/button'
 import { Plus } from 'lucide-react'
-import { EditCardDialog } from '@/components/common/edit-card-dialog'
+import { EditCardDialog } from '@/components/features/cards/edit-card-dialog'
 import { useInfiniteCards } from '@/hooks/useInfiniteCards'
 import {Card} from "@/api";
 
