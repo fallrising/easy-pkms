@@ -1,6 +1,3 @@
-// File Path: personal-info-manager/components/features/bookmarks/bookmark-item.tsx
-'use client'
-
 import { useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/common/card'
 import { Button } from '@/components/common/button'
@@ -38,61 +35,64 @@ export function BookmarkItem({ bookmark, onDelete, onUpdate }: BookmarkItemProps
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this bookmark?')) {
-      await deleteBookmark(bookmark.id)
-      onDelete(bookmark.id)
+      try {
+        await deleteBookmark(bookmark.id)
+        onDelete(bookmark.id)
+      } catch (error) {
+        console.error('Failed to delete bookmark:', error)
+      }
     }
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex justify-between items-center">
-          {isEditing ? (
-            <Input
-              value={editedTitle}
-              onChange={(e) => setEditedTitle(e.target.value)}
-              className="mr-2"
-            />
-          ) : (
-            <span>{bookmark.title}</span>
-          )}
-          <div className="flex space-x-2">
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex justify-between items-center">
             {isEditing ? (
-              <>
-                <Button variant="ghost" size="sm" onClick={handleUpdate}>
-                  <Check className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" onClick={() => setIsEditing(false)}>
-                  <X className="h-4 w-4" />
-                </Button>
-              </>
+                <Input
+                    value={editedTitle}
+                    onChange={(e) => setEditedTitle(e.target.value)}
+                    className="mr-2"
+                />
             ) : (
-              <Button variant="ghost" size="sm" onClick={() => setIsEditing(true)}>
-                <Pencil className="h-4 w-4" />
-              </Button>
+                <span>{bookmark.title}</span>
             )}
-            <Button variant="ghost" size="sm" onClick={handleDelete}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        {isEditing ? (
-          <Input
-            value={editedUrl}
-            onChange={(e) => setEditedUrl(e.target.value)}
-          />
-        ) : (
-          <a href={bookmark.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-            {bookmark.url}
-          </a>
-        )}
-      </CardContent>
-      <CardFooter className="text-sm text-muted-foreground">
-        Created: {new Date(bookmark.createdAt).toLocaleDateString()}
-      </CardFooter>
-    </Card>
+            <div className="flex space-x-2">
+              {isEditing ? (
+                  <>
+                    <Button variant="ghost" size="sm" onClick={handleUpdate}>
+                      <Check className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={() => setIsEditing(false)}>
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </>
+              ) : (
+                  <Button variant="ghost" size="sm" onClick={() => setIsEditing(true)}>
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+              )}
+              <Button variant="ghost" size="sm" onClick={handleDelete}>
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isEditing ? (
+              <Input
+                  value={editedUrl}
+                  onChange={(e) => setEditedUrl(e.target.value)}
+              />
+          ) : (
+              <a href={bookmark.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                {bookmark.url}
+              </a>
+          )}
+        </CardContent>
+        <CardFooter className="text-sm text-muted-foreground">
+          Created: {new Date(bookmark.createdAt).toLocaleDateString()}
+        </CardFooter>
+      </Card>
   )
 }
-

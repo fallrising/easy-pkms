@@ -1,6 +1,3 @@
-// File Path: personal-info-manager/components/features/bookmarks/bookmark-list.tsx
-'use client'
-
 import { BookmarkItem } from '@/components/features/bookmarks/bookmark-item'
 import { Input } from '@/components/common/input'
 import { useBookmarks } from '@/hooks/useBookmarks'
@@ -19,9 +16,10 @@ export function BookmarkList() {
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this card?')) {
             try {
-            await deleteBookmark(id)
-        } catch (error) {
-            console.error('Failed to delete bookmark:', error)
+                await deleteBookmark(id)
+            } catch (error) {
+                console.error('Failed to delete bookmark:', error)
+            }
         }
     }
 
@@ -68,5 +66,4 @@ export function BookmarkList() {
             </div>
         </div>
     )
-  }
 }
