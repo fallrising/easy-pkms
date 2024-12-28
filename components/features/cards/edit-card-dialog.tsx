@@ -15,7 +15,6 @@ interface EditCardDialogProps {
     id: string
     title: string
     content: string
-    logo: string
     status: string
   } | null
   onClose: () => void
@@ -27,7 +26,6 @@ export function EditCardDialog({ card, onClose, onUpdate, onCreate }: EditCardDi
   const [formData, setFormData] = useState(card || {
     title: '',
     content: '',
-    logo: '',
     status: 'active'
   })
 
@@ -66,11 +64,6 @@ export function EditCardDialog({ card, onClose, onUpdate, onCreate }: EditCardDi
             placeholder="Content"
             value={formData.content}
             onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-          />
-          <Input
-            placeholder="Logo (SVG)"
-            value={formData.logo}
-            onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
           />
           <Select
             value={formData.status}

@@ -9,7 +9,6 @@ import { format } from "date-fns"
 interface ContentCardProps extends CardType {
     onEdit?: (id: string, card: Partial<CardType>) => void
     onDelete?: (id: string) => void
-    type?: 'document' | 'image' | 'video' | 'audio' | 'code' | 'folder' | string
 }
 
 export function ContentCard({
@@ -17,7 +16,6 @@ export function ContentCard({
                                 title,
                                 content,
                                 status,
-                                type, // Add this prop
                                 createdAt,
                                 updatedAt,
                                 onEdit,
